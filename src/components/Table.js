@@ -1,4 +1,5 @@
 const Table = ({ sat }) => {
+
   return (
     <table>
       <thead>
@@ -9,19 +10,27 @@ const Table = ({ sat }) => {
           <th>Status</th>
         </tr>
       </thead>
-      {sat.map((id, data) => {
-        return (
-          <tbody>
+      <tbody>{
+        sat.map((data, id) => {
+          function Operational(props) {
+            const isOperational = props.isOperational;
+            return (
+              <>
+              {isOperational ? 'active' : 'inactive'}
+              </>
+            )
+          }
+          return (
             <tr key={id}>
               <td>{data.name}</td>
               <td>{data.type}</td>
-              <td>{data.launchDate}</td>
-              <td>conditional</td>
+              <td>{data.launchDate}</td>              
+              <td>Operational(data.isOperational)</td>
             </tr>
-          </tbody>
-        )
-      }
-      )};
+            )
+        }
+        )}
+      </tbody>
     </table>
   );
 };
