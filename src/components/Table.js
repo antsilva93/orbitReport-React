@@ -1,5 +1,13 @@
 const Table = ({ sat }) => {
 
+  const isOperational = (props) => {
+    if (props === true) {
+      return 'Active';
+    } else {
+      return 'Inactive';
+    }
+  }
+
   return (
     <table>
       <thead>
@@ -12,22 +20,14 @@ const Table = ({ sat }) => {
       </thead>
       <tbody>{
         sat.map((data, id) => {
-          function Operational(props) {
-            const isOperational = props.isOperational;
-            return (
-              <>
-              {isOperational ? 'active' : 'inactive'}
-              </>
-            )
-          }
           return (
             <tr key={id}>
               <td>{data.name}</td>
               <td>{data.type}</td>
-              <td>{data.launchDate}</td>              
-              <td>Operational(data.isOperational)</td>
+              <td>{data.launchDate}</td>
+              <td>{isOperational(data.operational)}</td>
             </tr>
-            )
+          )
         }
         )}
       </tbody>
